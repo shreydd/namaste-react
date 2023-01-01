@@ -62,25 +62,25 @@ Ream more about it here: https://webpack.js.org/concepts/hot-module-replacement/
 * Parcel has a plugin for everything. From transforming files, to resolving dependencies, to bundling and optimizing – everything is customizable.
 
 ### Some of the highlights of parcel (my favourites)
-* Content hashing
+-> Content hashing
 
 Including a hash of a bundle’s contents is an important optimization for production builds that enables browsers to cache loaded files indefinitely. When the contents of a bundle changes, so does its filename, which acts as a cache invalidation mechanism. See the Content hashing docs for details about this.
 
-* Transpilation
+-> Transpilation
 
 Parcel transpiles your JavaScript and CSS for your target browsers automatically! Just declare a browserslist in your package.json, and Parcel takes care of transpiling only what's needed.
 
-* Code splitting
+-> Code splitting
 
 When multiple parts of your application depend on the same common modules, they are automatically deduplicated into a separate bundle. This allows commonly used dependencies to be loaded in parallel with your application code and cached separately by the browser!
 
 Code splitting is also supported for CSS. If you import CSS from your JavaScript, a sibling CSS bundle will be produced and loaded in parallel with the JS bundle.
 
-* Image optimization
+-> Image optimization
 
 Parcel supports resizing, converting, and optimizing images! Just pass query parameters for the format and size you need when referencing the image file in your HTML, CSS, JavaScript, etc. and Parcel will take care of the conversion and optimization process.
 
-* Multi core
+-> Multi core
 
 Parcel is designed around a multi-core architecture that parallelizes work across all of your cores and takes full advantage of modern hardware.
 
