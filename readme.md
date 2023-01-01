@@ -102,3 +102,26 @@ This is where our build files are stored.
 
 ### What is browserslist?
 We use this to specify which version of the browsers we are targetting so that our bundler can optimise the build files to suit them thus making it compatible.
+
+### difference between 
+- vite: Vite is an opinionated superset of Rollup. In a nutshell, Vite is a wrapper around Rollup that aims to improve performance by leveraging JavaScript tools written in compile-to-native languages. And for this, Vite uses ES build under that hood.
+
+- webpack: Webpack is the swiss army knife of JavaScript module bundlers and it is an advanced tool that ships out of the box with an overwhelming amount of features. And this can make Webpack difficult to learn.
+
+- parcel: Parcel is a plug-and-play module bundler that requires zero configuration. It is a beginner-friendly bundler that focuses on simplicity and works out of the box.
+
+Read more here: https://blog.sessionstack.com/how-javascript-works-a-guide-to-build-tools-exploring-webpack-parcel-rollup-es-build-and-2089bcf0ddb4
+
+### Difference between ^ and ~ in package.json
+Generally, a package follows a naming convention as follows
+```
+"package": "MAJOR.MINOR.PATCH"
+```
+This means that PATCHes are bug fixes and MINORs add new features but neither of them break what worked before. Finally, MAJORs add changes that won’t work with earlier versions.
+
+A tilde (~) upgrades the patch while a caret (^) the minor version so that we can have newer features that would not break the code.
+
+### Script types
+- module: This value causes the code to be treated as a JavaScript module. The processing of the script contents is deferred. The charset and defer attributes have no effect.
+
+- importmap: This value indicates that the body of the element contains an import map. The import map is a JSON object that developers can use to control how the browser resolves module specifiers when importing JavaScript modules. 
