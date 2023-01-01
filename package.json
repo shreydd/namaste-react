@@ -1,0 +1,32 @@
+{
+  "name": "namaste-react-01",
+  "version": "1.0.0",
+  "description": "A followed along codebase for namaste react course",
+  "source": "index.html",
+  "scripts": {
+    "start": "parcel",
+    "test": "jest",
+    "build": "parcel build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shreydd/namaste-react-01.git"
+  },
+  "author": "Shreyas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shreydd/namaste-react-01/issues"
+  },
+  "homepage": "https://github.com/shreydd/namaste-react-01#readme",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "parcel": "^2.8.2",
+    "process": "^0.11.10"
+  },
+  "browserslist": [
+    "last 10 versions"
+  ]
+}
