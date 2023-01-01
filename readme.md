@@ -91,7 +91,7 @@ This is where all our node dependencies are stored. Without it the project canno
 This is where our build files are stored. 
 
 ### What is browserslist?
-We use this to specify which version of the browsers we are targetting so that our bundler can optimise the build files to suit them thus making it compatible.
+We use this to specify which version of the browsers we are targetting so that our bundler can optimise the build files to suit them mainly. It does not mean that it wouldn't work with other browsers or versions, it just means that it does not guarantee all the features will work on the excluded ones.
 
 ### difference between 
 - vite: Vite is an opinionated superset of Rollup. In a nutshell, Vite is a wrapper around Rollup that aims to improve performance by leveraging JavaScript tools written in compile-to-native languages. And for this, Vite uses ES build under that hood.
