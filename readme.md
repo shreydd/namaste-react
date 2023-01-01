@@ -38,6 +38,7 @@ Tree shaking is a term commonly used within a JavaScript context to describe the
 
 In modern JavaScript applications, we use module bundlers (e.g., webpack or Rollup) to automatically remove dead code when bundling multiple JavaScript files into single files. This is important for preparing code that is production ready, for example with clean structures and minimal file size.
 ```
+Removes unwanted code. Ex: if we use just a specific function from a library, only that function is retained and the rest are removed from the prod build
 
 ### What is Hot Module Replacement?
 Hot Module Replacement (HMR) exchanges, adds, or removes modules while an application is running, without requiring a full reload.
