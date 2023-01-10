@@ -1,3 +1,20 @@
 #container {
-    background-color: red;;
+    background-color: red;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.search-bar {
+    border: none;
+    border-bottom: 1px solid black;
+    width: 15rem;
+    padding: .2rem;
+}
+
+.search-bar:focus {
+    color: black;
+    outline: black;
 }

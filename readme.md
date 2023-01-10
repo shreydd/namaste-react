@@ -1,8 +1,6 @@
 # Namaste React 
 An 8 week bootcamp on react.js. This is an assignment for the second lesson
 
-> This repo consists of parcel and other dependencies to build a react app
-
 ```
 npm start
 ``` 
@@ -15,104 +13,36 @@ This will generate a production ready build version
 
 # Assignment questions
 
-### What is NPM?
-NPM is a node modules package manager which helps us to organise our packages used for development of our app. It necessarily does not stand of `Node Package Manager` but ultimately does the job implied by it.
+### What is JSX?
+It is a `syntax extension to javascript`. It has a html-like syntax which helps developers in familiarising the devloping with the code in a much simpler and faster manner. JSX get's converted into react elements by babel.
 
-### What is parcel / webpack?
-Parcel is a zero config build tool. We need these tools for building minified and scalable web applications as they reduce the complexity of building them for the developers. Webpack is also a build tool with a few differences. These tools offer more features that are beneficial for the rendering of the app.
+### Features of JSX
 
-### What is .parcel-cache?
-This is a folder created by parcel where it can store it's files necessary for it's operations.
+- **Can embed expressions** 
+You can put any valid JavaScript expression inside the curly braces in JSX. For example, `2 + 2`, `user.firstName` or `formatName(user)` are all valid JavaScript expressions.
 
-### What is npx?
-It is a command used to execute js packages in the environment
+- **JSX is an expression too**
+Use it within if and for statements, assign variables, accept it as an arguement as it complies to a js function call and evaluates to a js object.
 
-### What is the difference between dependencies and devDependencies?
-devDependencies: Modules / packages required only during development 
-Dependencies: Modules / packages required at runtime / live production
+- **Prevents from XSS attacks**
+React DOM `escapes` any values embedded in JSX before rendering them. This means that any value a user might enter, such as `<` or `*` which are a common way to utilise and "inject" a script and exploit a site, can be avoided.
+Thus it ensures that you can never inject anything that’s not explicitly written in your application. Everything is converted to a string before being rendered. This helps prevent XSS (cross-site-scripting) attacks.
 
-### What is tree shaking?
-As per MDN
-```
-Tree shaking is a term commonly used within a JavaScript context to describe the removal of dead code.
+- **JSX Represents Objects**
+Babel compiles all these JSX expressions into react elements which in turn are just objects. React then reads these objects and converts them into a DOM element. 
 
-In modern JavaScript applications, we use module bundlers (e.g., webpack or Rollup) to automatically remove dead code when bundling multiple JavaScript files into single files. This is important for preparing code that is production ready, for example with clean structures and minimal file size.
-```
-Removes unwanted code. Ex: if we use just a specific function from a library, only that function is retained and the rest are removed from the prod build
+Read more about these here: https://reactjs.org/docs/introducing-jsx.html
 
-### What is Hot Module Replacement?
-Hot Module Replacement (HMR) exchanges, adds, or removes modules while an application is running, without requiring a full reload.
-Ream more about it here: https://webpack.js.org/concepts/hot-module-replacement/
 
-### Abilities of Parcel
-* Creates A Server with HMR for a better dx
-* Uses File Watcher algorithm
-* BUNDLING for making our app production ready
-* MINIFIES the files for better performance
-* Cleans our Code (eg: removes unnecessary console.log)
-* Provides Dev and Production Build
-* Super Fast build algorithm
-* Image Optimization
-* Caching while development
-* Compression of data on the fly
-* Compatible with older version of browser
-* HTTPS on dev
-* port Numbers are handled automatically
-* Content Hashing Algorithm for optimising production builds
-* Zero Config at the beginning
-* Parcel has a plugin for everything. From transforming files, to resolving dependencies, to bundling and optimizing – everything is customizable.
+### What is the Role of type attribute in a script tag?
 
-### Some of the highlights of parcel (my favourites)
-Content hashing: Including a hash of a bundle’s contents is an important optimization for production builds that enables browsers to cache loaded files indefinitely. When the contents of a bundle changes, so does its filename, which acts as a cache invalidation mechanism. See the Content hashing docs for details about this.
+It is used to indicate the type of script. Depending on the type described, it'll either treat it as a classic js script or a js module. JS module scripts require the use of CORS protocol for cross-origin fetching. 
 
-Transpilation: Parcel transpiles your JavaScript and CSS for your target browsers automatically! Just declare a browserslist in your package.json, and Parcel takes care of transpiling only what's needed.
 
-Code splitting: When multiple parts of your application depend on the same common modules, they are automatically deduplicated into a separate bundle. This allows commonly used dependencies to be loaded in parallel with your application code and cached separately by the browser!
+### What is the difference between {TitleComponent} vs {&lt;TitleComponent/&gt;} vs {&lt;TitleComponent&gt;&lt;/TitleComponent&gt;} in JSX
 
-Code splitting is also supported for CSS. If you import CSS from your JavaScript, a sibling CSS bundle will be produced and loaded in parallel with the JS bundle.
+With `{TitleComponent}` we can run any valid javascript expression inside it
 
-Image optimization: Parcel supports resizing, converting, and optimizing images! Just pass query parameters for the format and size you need when referencing the image file in your HTML, CSS, JavaScript, etc. and Parcel will take care of the conversion and optimization process.
+With `{<TitleComponent/>}` we can pass multiple props and keep the code cleaner
 
-Multi core: Parcel is designed around a multi-core architecture that parallelizes work across all of your cores and takes full advantage of modern hardware.
-
-### What is .gitignore? What should we add and not add into it?
-It's file used to specify files and folders which need not go onto the hosted github repo. Files which can be auto generated are specified in the git ignore file so that it's easier to clone repos and host them. By auto generated we mean node_modules, build files and such
-
-### What is the difference between `package.json` and `package-lock.json`?
-package.json: contains basic information about the project
-package-lock.json: contains the exact info of the whole project. ex: the exact version of libraries used to build the project
-
-### Why should I not modify `package-lock.json`?
-Modifying this file will lead to messed up production / development builds leading to numerous issues. It's generally good practice to let the machine handle itself.
-
-### What is `node_modules` ? Is it a good idea to push that on git?
-This is where all our node dependencies are stored. Without it the project cannot function. It is generally auto generated on the server so we do not need to push it on the git.
-
-### What is the `dist` folder?
-This is where our build files are stored. 
-
-### What is browserslist?
-We use this to specify which version of the browsers we are targetting so that our bundler can optimise the build files to suit them mainly. It does not mean that it wouldn't work with other browsers or versions, it just means that it does not guarantee all the features will work on the excluded ones.
-
-### difference between 
-- vite: Vite is an opinionated superset of Rollup. In a nutshell, Vite is a wrapper around Rollup that aims to improve performance by leveraging JavaScript tools written in compile-to-native languages. And for this, Vite uses ES build under that hood.
-
-- webpack: Webpack is the swiss army knife of JavaScript module bundlers and it is an advanced tool that ships out of the box with an overwhelming amount of features. And this can make Webpack difficult to learn.
-
-- parcel: Parcel is a plug-and-play module bundler that requires zero configuration. It is a beginner-friendly bundler that focuses on simplicity and works out of the box.
-
-Read more here: https://blog.sessionstack.com/how-javascript-works-a-guide-to-build-tools-exploring-webpack-parcel-rollup-es-build-and-2089bcf0ddb4
-
-### Difference between ^ and ~ in package.json
-Generally, a package follows a naming convention as follows
-```
-"package": "MAJOR.MINOR.PATCH"
-```
-This means that PATCHes are bug fixes and MINORs add new features but neither of them break what worked before. Finally, MAJORs add changes that won’t work with earlier versions.
-
-A tilde (~) upgrades the patch while a caret (^) the minor version so that we can have newer features that would not break the code.
-
-### Script types
-- module: This value causes the code to be treated as a JavaScript module. The processing of the script contents is deferred. The charset and defer attributes have no effect.
-
-- importmap: This value indicates that the body of the element contains an import map. The import map is a JSON object that developers can use to control how the browser resolves module specifiers when importing JavaScript modules. 
+With `{<TitleComponent><TitleComponent/>}` we can nest more components?
