@@ -13,36 +13,154 @@ This will generate a production ready build version
 
 # Assignment questions
 
-### What is JSX?
-It is a `syntax extension to javascript`. It has a html-like syntax which helps developers in familiarising the devloping with the code in a much simpler and faster manner. JSX get's converted into react elements by babel.
+### Is JSX mandatory for react?
+No. But it's a good practice to use it as code is for humans to understand well enough for making changes.
 
-### Features of JSX
+### Is ES6 mandatory for react?
+No. But it enables us to write better code faster and easily.
 
-- **Can embed expressions** 
-You can put any valid JavaScript expression inside the curly braces in JSX. For example, `2 + 2`, `user.firstName` or `formatName(user)` are all valid JavaScript expressions.
+### `{TitleComponent}` VS `<TitleComponent/>` VS `{<TitleComponent></TitleComponent>}` in JSX
+`{TitleComponent}` allows us to use normal JS as well with in the `{...}` brackets.
 
-- **JSX is an expression too**
-Use it within if and for statements, assign variables, accept it as an arguement as it complies to a js function call and evaluates to a js object.
+`<TitleComponent/>` is often used by the industry and allows us to pass props.
 
-- **Prevents from XSS attacks**
-React DOM `escapes` any values embedded in JSX before rendering them. This means that any value a user might enter, such as `<` or `*` which are a common way to utilise and "inject" a script and exploit a site, can be avoided.
-Thus it ensures that you can never inject anything that’s not explicitly written in your application. Everything is converted to a string before being rendered. This helps prevent XSS (cross-site-scripting) attacks.
+`{<TitleComponent></TitleComponent>}` is also a valid JSX expression.
 
-- **JSX Represents Objects**
-Babel compiles all these JSX expressions into react elements which in turn are just objects. React then reads these objects and converts them into a DOM element. 
+### How can to write comments is JSX?
+If you want to comment something in JSX you need to use JavaScript comments inside of Curly braces like `{/*comment here*/}`.
 
-Read more about these here: https://reactjs.org/docs/introducing-jsx.html
+### What is <React.Fragment></React.Fragment> and <></>?
+A common pattern in React is for a component to return multiple elements. React.Fragment lets you to group a list of children without adding extra nodes to the DOM.
+
+So instead of having one wrapper parent element we can use this to avoid having it.
+```js
+const Component = () => {
+    return(
+        <React.Fragment>
+            <Header/>
+            <Body/>
+            <Footer/>
+        </React.Fragment>
+    )
+}
+
+```
+
+`<></>` is a shorthand notation for it.
+
+Source: https://reactjs.org/docs/fragments.html
 
 
-### What is the Role of type attribute in a script tag?
+### What is a Virtual DOM?
+Virtual DOM is a representation of the actual DOM element tree. It is used to find out the different elements that need to be updated / re-rendered.
 
-It is used to indicate the type of script. Depending on the type described, it'll either treat it as a classic js script or a js module. JS module scripts require the use of CORS protocol for cross-origin fetching. 
+
+### What is Reconciliation in react?
+It is the process where react uses a diffing algorithm to compare a tree from another (DOM and Virtual DOM trees) and update the necessary parts.
+
+Read more: https://reactjs.org/docs/reconciliation.html
 
 
-### What is the difference between {TitleComponent} vs {&lt;TitleComponent/&gt;} vs {&lt;TitleComponent&gt;&lt;/TitleComponent&gt;} in JSX
+### What is React Fiber?
+React Fiber is an ongoing reimplementation of React's core algorithm. It is the culmination of over two years of research by the React team.
 
-With `{TitleComponent}` we can run any valid javascript expression inside it
+The goal of React Fiber is to increase its suitability for areas like animation, layout, and gestures. Its headline feature is incremental rendering: the ability to split rendering work into chunks and spread it out over multiple frames.
 
-With `{<TitleComponent/>}` we can pass multiple props and keep the code cleaner
+It is a new Reconciliation engine introduced in React-16 and it's mainly responsible for diffing of the two trees
 
-With `{<TitleComponent><TitleComponent/>}` we can nest more components?
+Read more: https://github.com/acdlite/react-fiber-architecture
+
+
+### Why and when do we need keys?
+If a node has multiple similar child elements, it would be difficult to update the necessary element which might lead to re-rendering the whole node. So to improve the performance we use UNIQUE keys. This will allow the library to know which child element needs the necessary action and so this approach is a better method for rendering the UI.
+
+
+### Can we use index as keys?
+There may be instances when we may not be able to get unique keys. At that point we may consider using an index provided by map function (or foreach) only if:
+
+    - the list and items are static–they are not computed and do not change
+    - the items in the list have no ids;
+    - the list is never reordered or filtered.
+
+When all of them are met, you may safely use the index as a key.
+
+But why?
+
+If you add a new item to the state and sort / map it, react can get confused about which property is for which component and present an incorrect UI.
+
+Read: https://robinpokorny.com/blog/index-as-a-key-is-an-anti-pattern/
+
+
+### What is and what are the ways to use props in react?
+Conceptually, components are like JavaScript functions. They accept arbitrary inputs (called “props”) and return React elements describing what should appear on the screen.
+
+Wrapping under `props`
+```js
+const childComp = (props) => {
+    return(
+        <div>
+            {props.data}
+        </div>
+    )
+}
+
+const AppComp = () => {
+    return{
+        <div>
+            <childComp data="hello" />
+        </div>
+    }
+}
+```
+
+Destructuring right at the function parameters
+```js
+const childComp = ({data}) => {
+    return(
+        <div>
+            {data}
+        </div>
+    )
+}
+
+const AppComp = () => {
+    return{
+        <div>
+            <childComp data="hello" />
+        </div>
+    }
+}
+```
+
+using spread operator
+```js
+const RestaurantCard = ({name, cuisines, deliveryTime, cloudinaryImageId}) => {
+    return(
+        <div className="card">
+            <img src={"https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/" + cloudinaryImageId} alt="restaurant img" />
+            <h4>{name}</h4>
+            <p>{cuisines.join(", ")}</p>
+            <p>{deliveryTime} mins</p>
+
+        </div>
+    )
+}
+
+const Body = () => {
+    return(
+        <main className="restaurant-list">
+            {
+                RestaurantsData.map((cards) => {
+                    return cards.cards.map((res) => {
+                        return <RestaurantCard key={res.data.data.id} {...res.data.data} />
+                    })
+                })
+            }
+        </main>
+    )
+}
+```
+
+
+### What is a config driven UI?
+A config driven UI is a way to control the interface with specific parameters that can be changed from the backend. This allows us to prvide a more dynamic view curated for users.
