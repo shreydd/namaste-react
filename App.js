@@ -1,24 +1,19 @@
-const heading = React.createElement("h1",
-    {
-        id: "title"
-    },
-    "heading 1"
-);
+import React from "react";
+import ReactDOM from "react-dom/client";
+import Header from './src/components/Header';
+import Body from "./src/components/Body";
+import Footer from "./src/components/Footer";
 
-const heading2 = React.createElement("h2",
-    {
-        id: "title-2"
-    },
-    "heading 2"
-);
-
-const container = React.createElement("div",
-    {
-        id: "container"
-    },
-    [heading, heading2]
-);
+const AppLayout = () => {
+    return(
+        <>
+            <Header/>
+            <Body />
+            <Footer/>
+        </>
+    )
+}
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(container)
+root.render(<AppLayout/>)

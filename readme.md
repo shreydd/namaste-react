@@ -1,37 +1,95 @@
-# Namaste React 
-An 8 week bootcamp on react.js. This is an assignment for the first lesson
+# How to's
+How to start a development server and build a production ready app.
 
-### What is emmet?
-It's a customisable snippets which allows for faster writing. Commonly used code snippets are modified as per our requirement using it's own custom abbrivations and generates full-fledged code. This allows us to move faster while developing applications.
-
-### What is the difference between a Library and Framework?
-A library is like a plug and play tool which you can use where ever specifcally you would like it to be used. 
-A framework is like a blueprint which needs to be followed for proper usage as the flow of control is not in the developer's hand for the most part. 
-
-### What is a CDN and why do we use it?
-CDN stands for `Content Delivery Network` which is a set of servers distributed geographically that can transfer files at higher speeds. These files are optimised extensively due to which there will be minimal lag while loading the content requested by the user.
-
-### Why is React known as React?
 ```
-Realizing that FBolt wouldn’t be a great name for the library when used on its own, Jordan Walke and Tom Occhino decided on a new name: “React.” After Tom sent out the diff to rename everything to React, Jordan commented:
+npm start
+``` 
+This will start a live server (powered by parcel)
 
-    Jordan Walke: I might add for the sake of discussion, that many systems advertise some kind of reactivity, but they usually require that you set up some kind of point-to-point listeners and won’t work on structured data. This API reacts to any state or property changes, and works with data of any form (as deeply structured as the graph itself) so I think the name is fitting.
 ```
-Source: https://reactjs.org/blog/2016/09/28/our-first-50000-stars.html#fbolt-is-born
+npm run build
+```
+This will generate a production ready build version
 
-### What is crossorigin in the script tag?
-It provides support for CORS by defining how the element handles cross-origin requests, thereby enabling the configuration of the CORS requests for the element's fetched data. 
+Make sure to use `npm install` if you are missing any packages or cloning this repo
 
-### What is the difference between React and ReactDOM?
-React is the core library and reactDOM is the set of APIs that allow use to perform UI operations on the web.
 
-### What is the difference between react.development.js and react.production.js files via CDN?
-The react.development.js CDN link provides library files appropriate for the development environment while the other provides a minified js file which can be appropriate for production environment.
 
-### What is async and defer?
-If a script tag has async attribute:
-The script content is fetched while the html content is being parsed, once the script is loaded it pauses the html parsing, executes the js and then proceeds with the html parsing
+# Assignment questions
 
-If it has a defer tag:
-The script content is loaded simultaneously with the html parsing, once the parsing operation is done the js is then executed.
-Refer: https://www.youtube.com/watch?v=IrHmpdORLu8
+### What is the difference between Named export, Default export and * as export?
+**Named export:**
+
+In Title.js
+```js
+export const Title = () => {
+    return <div>title</div>
+}
+```
+
+While importing it 
+```js
+import {Title} from './components/Title'
+```
+We need to specify the component we need using `{...}`
+
+
+**Default Export:**
+In Title.js
+```js
+const Title =() => {
+    return <div>Title</div>
+}
+export default Title;
+```
+
+While importing it
+```js
+import Title from './components/Title';
+```
+We need not use the same name we used in the default export, we can use a different name as well but it's a good practice to keep things similar as it makes it more readable and easier to understand.
+
+
+**import * as:**
+In the Title.js file, if you have numerous exports we can avoid writing multiple lines of import declarations and import everything like this
+```js
+import * as obj from './components/Title'
+```
+And then use `obj` to reference what we need
+```js
+const title = obj.Title
+const words = obj.Words
+```
+
+
+### What is the importance of config.js file?
+During development we might have many variables / values / links that might need to be hard-set / hardcoded and replaced later on. Going around the code and replacing in each and every place is an unreliable and tedious process. So to make this process simpler we use a `config.js or constants.js` file where we store all the values references that may change depending on the environment. Ex: external cloud hosted image links, developer API keys and so on.
+
+
+### What are react hooks?
+Hooks are nothing but a function dedicated to do a specific task. They let you use state and other React features without writing a class.
+Read: https://reactjs.org/docs/hooks-intro.html
+
+
+### When would I use a Hook? 
+If you write a function component and realize you need to add some state to it, previously you had to convert it to a class. Now you can use a Hook inside the existing function component
+Read: https://reactjs.org/docs/hooks-state.html
+
+
+### Why do we need a useState Hook?
+useState hook allows us to update and re-render a value on the UI without any confusion. It provides us a variable and a method dedicated to a value / variable that helps us avoid any mis-match while updating the code / UI.
+
+
+### What does calling useState do? 
+It declares a “state variable”. This is a way to “preserve” some values between the function calls — useState is a new way to use the exact same capabilities that this.state provides in a class. Normally, variables “disappear” when the function exits but state variables are preserved by React.
+Read: https://reactjs.org/docs/hooks-state.html
+
+
+### Why didn't the search bar work during the session?
+The search results was updating the `restaurantList` variable which was being used to search for a list of restaurants for the searched text. This would result in a wrong implementation where we will be searching a restaurant in an already filtered list.
+
+
+In this implementation the search bar works and trims out whitespaces on the either sides of a text input. It also checks for null values and presents the total available list of restaurants.
+
+Live link for working demo: https://lesson5-nr.netlify.app/
+Feel free to leave a comment if something is not right: https://github.com/shreydd/namaste-react/pull/1

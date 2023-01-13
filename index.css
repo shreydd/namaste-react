@@ -1,3 +1,95 @@
+:root{
+    --primary-color: #DC5537;
+}
+
+#root {
+    max-width: 80rem;
+    margin: auto;
+}
+
 #container {
-    background-color: red;;
+    background-color: red;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* justify-content: center; */
+}
+
+.nav-lists {
+    display: flex;
+}
+
+.nav-lists > p {
+    padding: 0.5rem;
+}
+
+.logo {
+    width: 3rem;
+}
+
+.search-toolbar {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0rem;
+}
+
+.search-toolbar > button {
+    margin-left: 15px;
+    background-color: var(--primary-color);
+    border: none;
+    padding: 0.4rem 0.8rem 0.4rem 0.8rem;
+    color: white;
+    cursor: pointer;
+}
+
+.search-bar {
+    border: none;
+    border-bottom: 1px solid black;
+    width: 15rem;
+    padding: .2rem;
+    width: 60%;
+}
+
+.search-bar:focus {
+    color: black;
+    outline: black;
+}
+
+.card {
+    max-width: 200px;
+    padding: 1rem;
+}
+
+@media (min-width:80rem) {
+    .card {
+        max-width: 270px;
+    }
+}
+
+.restaurant-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card > img {
+    width: 100%;
+}
+
+.card:hover{
+    border-color: #d3d5df;
+    box-shadow: 0 4px 7px 0 rgba(218,220,230,.6);
+}
+
+footer {
+    background-color: rgb(27, 25, 25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding: 1rem;
+    margin-top: 1rem;
 }
