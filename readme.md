@@ -87,3 +87,9 @@ Read: https://reactjs.org/docs/hooks-state.html
 
 ### Why didn't the search bar work during the session?
 The search results was updating the `restaurantList` variable which was being used to search for a list of restaurants for the searched text. This would result in a wrong implementation where we will be searching a restaurant in an already filtered list.
+
+
+In this implementation the search bar works and trims out whitespaces on the either sides of a text input. It also checks for null values and presents the total available list of restaurants.
+
+Live link for working demo: https://lesson5-nr.netlify.app/
+Feel free to leave a comment if something is not right: https://github.com/shreydd/namaste-react/pull/1
