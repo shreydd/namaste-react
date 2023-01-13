@@ -1,3 +1,7 @@
+:root{
+    --primary-color: #DC5537;
+}
+
 #root {
     max-width: 80rem;
     margin: auto;
@@ -23,7 +27,22 @@
 }
 
 .logo {
-    width: 5rem;
+    width: 3rem;
+}
+
+.search-toolbar {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0rem;
+}
+
+.search-toolbar > button {
+    margin-left: 15px;
+    background-color: var(--primary-color);
+    border: none;
+    padding: 0.4rem 0.8rem 0.4rem 0.8rem;
+    color: white;
+    cursor: pointer;
 }
 
 .search-bar {
@@ -52,6 +71,7 @@
 .restaurant-list {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .card > img {
