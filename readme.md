@@ -83,3 +83,7 @@ useState hook allows us to update and re-render a value on the UI without any co
 ### What does calling useState do? 
 It declares a “state variable”. This is a way to “preserve” some values between the function calls — useState is a new way to use the exact same capabilities that this.state provides in a class. Normally, variables “disappear” when the function exits but state variables are preserved by React.
 Read: https://reactjs.org/docs/hooks-state.html
+
+
+### Why didn't the search bar work during the session?
+The search results was updating the `restaurantList` variable which was being used to search for a list of restaurants for the searched text. This would result in a wrong implementation where we will be searching a restaurant in an already filtered list.
