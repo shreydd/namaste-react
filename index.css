@@ -50,6 +50,7 @@
     border-bottom: 1px solid black;
     width: 15rem;
     padding: .2rem;
+    width: 60%;
 }
 
 .search-bar:focus {
