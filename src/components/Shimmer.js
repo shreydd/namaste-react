@@ -3,18 +3,11 @@ const Shimmer = () => {
         <>
             <div className="shimmer-search"></div>
             <div className="grid-list">
-                <div className="shimmer-card"></div>
-                <div className="shimmer-card"></div>
-                <div className="shimmer-card"></div>
-                <div className="shimmer-card"></div>
-                <div className="shimmer-card"></div>
-                <div className="shimmer-card"></div>
-                <div className="shimmer-card"></div>
-                <div className="shimmer-card"></div>
-                <div className="shimmer-card"></div>
-                <div className="shimmer-card"></div>
-                <div className="shimmer-card"></div>
-                <div className="shimmer-card"></div>
+                {
+                    Array(12)
+                    .fill("")
+                    .map((e,index) => <div key={index} className="shimmer-card"></div>)
+                }
             </div>
         </>
     )
