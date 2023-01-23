@@ -1,6 +1,10 @@
 import Logo from "/assets/images/Meshi.svg";
+import { useState } from "react";
 
 const Header = () => {
+
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
     return(
         <nav className="navbar">
             <a href="/">
@@ -11,6 +15,13 @@ const Header = () => {
                 <p>Offers</p>
                 <p>Restaurants</p>
                 <p>Cart</p>
+                {
+                    isLoggedIn ? (
+                        <button onClick={() => setIsLoggedIn(false)}>Logout</button>
+                    ) : (
+                        <button onClick={() => setIsLoggedIn(true)}>Login</button>
+                    )
+                }
             </ul>
         </nav>
     )

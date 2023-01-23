@@ -17,79 +17,75 @@ Make sure to use `npm install` if you are missing any packages or cloning this r
 
 # Assignment questions
 
-### What is the difference between Named export, Default export and * as export?
-**Named export:**
+### What is a microservice?
+A self-contained piece of business function which is vital for the working of a whole system. Microservices are an architectural pattern of coupling multiple standalone-ish services together which communicate with each other to work as a singular whole system, made to achieve a business goal.
 
-In Title.js
+
+### What is a monolith architecture?
+A software system where different functions like data processing, error handling, UI etc are all interwoven rather than containing architecturally separate components is called a monolith architecture.
+
+
+### Describe the differences between microservices and monolith architectures.
+A monolithic application is built as a single unified unit while a microservices architecture is a collection of smaller, independently deployable services.
+Read: https://www.atlassian.com/microservices/microservices-architecture/microservices-vs-monolith
+
+
+### Why do we need a useEffect Hook?
+There are many occassions when we need to update the UI based on some changes or due to a new input (in the UI, upon fetch operation completion etc), this is where useEffect allows us to operate side missions and complete the task as accurately as we require it to.
+
+
+### What is optional chaining?
+The optional chaining (?.) operator accesses an object's property or calls a function. If the object accessed or function called is undefined or null, it returns undefined instead of throwing an error.
+Read: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining
+
+
+### What is shimmer UI?
+A loading screen which mimics the UI representation of the application which is being loaded onto the screen, this helps in reducing the cognitive load on a user.
+
+
+### What is the difference between a JS expression and a JS statement?
+At its core, an `expression` is a bit of JavaScript code that produces a value while a `statement` is a collection of expressions of sorts. A JavaScript program is a sequence of statements. Each statement is an instruction for the computer to do something. 
+Read: https://www.joshwcomeau.com/javascript/statements-vs-expressions/
+
+
+### Explain with a code example about Conditional Rendering
+Conditional Rendering is where we output the UI components based on values / conditions.
 ```js
-export const Title = () => {
-    return <div>title</div>
+function Greeting(props) {
+  const isLoggedIn = props.isLoggedIn;
+  if (isLoggedIn) {    
+    return <UserGreeting />;  
+  }  
+  return <GuestGreeting />;
+}
+const root = ReactDOM.createRoot(document.getElementById('root')); 
+// Try changing to isLoggedIn={true}:
+root.render(<Greeting isLoggedIn={false} />);
+```
+
+Here's a better way of handling conditional rendering using ternary operators like `condition ? true : false`
+
+```js
+render() {
+  const isLoggedIn = this.state.isLoggedIn;
+  return (
+    <div>
+      The user is <b>{isLoggedIn ? 'currently' : 'not'}</b> logged in.    </div>
+  );
 }
 ```
 
-While importing it 
-```js
-import {Title} from './components/Title'
-```
-We need to specify the component we need using `{...}`
+
+### What is CORS?
+Cross-Origin Resource Sharing (CORS) is an HTTP-header based mechanism that allows a server to indicate any origins (domain, scheme, or port) other than its own from which a browser should permit loading resources.
+Read: https://auth0.com/blog/cors-tutorial-a-guide-to-cross-origin-resource-sharing/
 
 
-**Default Export:**
-In Title.js
-```js
-const Title =() => {
-    return <div>Title</div>
-}
-export default Title;
-```
-
-While importing it
-```js
-import Title from './components/Title';
-```
-We need not use the same name we used in the default export, we can use a different name as well but it's a good practice to keep things similar as it makes it more readable and easier to understand.
+### What is async and await?
+We use the `async` funtion to return a `promise`, The keyword await makes JavaScript wait until that promise settles and returns its result.
+Read: https://www.theodinproject.com/lessons/node-path-javascript-async-and-await
 
 
-**import * as:**
-In the Title.js file, if you have numerous exports we can avoid writing multiple lines of import declarations and import everything like this
-```js
-import * as obj from './components/Title'
-```
-And then use `obj` to reference what we need
-```js
-const title = obj.Title
-const words = obj.Words
-```
-
-
-### What is the importance of config.js file?
-During development we might have many variables / values / links that might need to be hard-set / hardcoded and replaced later on. Going around the code and replacing in each and every place is an unreliable and tedious process. So to make this process simpler we use a `config.js or constants.js` file where we store all the values references that may change depending on the environment. Ex: external cloud hosted image links, developer API keys and so on.
-
-
-### What are react hooks?
-Hooks are nothing but a function dedicated to do a specific task. They let you use state and other React features without writing a class.
-Read: https://reactjs.org/docs/hooks-intro.html
-
-
-### When would I use a Hook? 
-If you write a function component and realize you need to add some state to it, previously you had to convert it to a class. Now you can use a Hook inside the existing function component
-Read: https://reactjs.org/docs/hooks-state.html
-
-
-### Why do we need a useState Hook?
-useState hook allows us to update and re-render a value on the UI without any confusion. It provides us a variable and a method dedicated to a value / variable that helps us avoid any mis-match while updating the code / UI.
-
-
-### What does calling useState do? 
-It declares a “state variable”. This is a way to “preserve” some values between the function calls — useState is a new way to use the exact same capabilities that this.state provides in a class. Normally, variables “disappear” when the function exits but state variables are preserved by React.
-Read: https://reactjs.org/docs/hooks-state.html
-
-
-### Why didn't the search bar work during the session?
-The search results was updating the `restaurantList` variable which was being used to search for a list of restaurants for the searched text. This would result in a wrong implementation where we will be searching a restaurant in an already filtered list.
-
-
-In this implementation the search bar works and trims out whitespaces on the either sides of a text input. It also checks for null values and presents the total available list of restaurants.
-
-Live link for working demo: https://lesson5-nr.netlify.app/
-Feel free to leave a comment if something is not right: https://github.com/shreydd/namaste-react/pull/1
+### What is the use of `const json = await data.json()` in getRestaurants()?
+The response object, returned by the await fetch(), is a generic placeholder for multiple data formats. `data.json()` is a method on the Response object that lets you extract a JSON object from the response. The method returns a promise, so you have to wait for the JSON. 
+Read: https://dmitripavlutin.com/javascript-fetch-async-await/

@@ -58,31 +58,81 @@
     outline: black;
 }
 
-.card {
-    max-width: 200px;
-    padding: 1rem;
+.center-text {
+    text-align: center;
 }
 
-@media (min-width:80rem) {
-    .card {
-        max-width: 270px;
+.grid-list {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+@media (min-width:780px) {
+    .grid-list {
+        grid-template-columns: repeat(3, minmax(0, 3fr));
     }
 }
 
-.restaurant-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+@media (min-width:1240px) {
+    .grid-list {
+        grid-template-columns: repeat(4, minmax(0, 4fr));
+    }
 }
+
+/* .card {
+    border-radius: 1rem;
+} */
+
+/* @media (min-width:80rem) {
+    .card {
+        max-width: 270px;
+    }
+} */
 
 .card > img {
     width: 100%;
+    /* border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem; */
+    /* border-radius: 1rem; */
 }
 
 .card:hover{
-    border-color: #d3d5df;
-    box-shadow: 0 4px 7px 0 rgba(218,220,230,.6);
+    border-color: #85878f;
+    box-shadow: 0 4px 7px 0 rgba(178, 179, 185, 0.6);
 }
+
+.card-details {
+    padding: 0.5rem;
+}
+
+
+.shimmer-search {
+    height: 2rem;
+    width: 100%;
+    display: flex;
+    margin: 1rem 0rem;
+    animation: pulse-bg 3s infinite;
+    border-radius: 1rem;
+}
+
+.shimmer-card {
+    padding-top: 65%;
+    border-radius: 1rem;
+    animation: pulse-bg 3s infinite;
+}
+
+@keyframes pulse-bg {
+    0% {
+      background-color: #bfbfbf;
+    }
+    50% {
+      background-color: #d9d9d9;
+    }
+    100% {
+      background-color: #bfbfbf;
+    }
+  }
 
 footer {
     background-color: rgb(27, 25, 25);
