@@ -89,3 +89,6 @@ Read: https://www.theodinproject.com/lessons/node-path-javascript-async-and-awai
 ### What is the use of `const json = await data.json()` in getRestaurants()?
 The response object, returned by the await fetch(), is a generic placeholder for multiple data formats. `data.json()` is a method on the Response object that lets you extract a JSON object from the response. The method returns a promise, so you have to wait for the JSON. 
 Read: https://dmitripavlutin.com/javascript-fetch-async-await/
+
+
+Live link: https://nr-lesson-6.netlify.app/
