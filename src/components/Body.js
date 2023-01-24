@@ -1,7 +1,8 @@
 import RestaurantCard from "/src/components/RestaurantCard";
-import { RestaurantsData } from "../../config";
+import { RestaurantsData, SWIGGY_API } from "../../config";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 // function to filter through all the restaurants 
 const filterData = (searchText, restaurants) => {
@@ -29,14 +30,13 @@ const Body = () => {
     const [restaurantsAvailable, setRestaurantsAvailable] = useState();
     const [searchText, setSearchText] = useState("");
 
-
     useEffect(() => {
         getRestaurants()
     }, []);
 
 
     const getRestaurants = async () => {
-        const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9063&lng=77.5857&page_type=DESKTOP_WEB_LISTING");
+        const data = await fetch(SWIGGY_API);
         const json = await data.json();
         // console.log(json?.data?.cards[2]?.data?.data?.cards)
         setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards);
@@ -71,8 +71,7 @@ const Body = () => {
                 : <main className="grid-list">
                     {
                         restaurantsAvailable.map((res) => {
-                            // return console.log({...res.data.cuisines})
-                            return <RestaurantCard key={res?.data?.id} {...res?.data} />
+                            return <Link className="link-reformat" to={"/restaurant/"+res?.data?.id}> <RestaurantCard key={res?.data?.id} {...res?.data} /> </Link>
                         })
                     }
                 </main>

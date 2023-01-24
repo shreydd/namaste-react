@@ -1,5 +1,6 @@
 import Logo from "/assets/images/Meshi.svg";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
 
@@ -11,15 +12,18 @@ const Header = () => {
                 <img src={Logo} className="logo" alt="Logo" />
             </a>
             <ul className="nav-lists">
-                <p>Top Dishes</p>
-                <p>Offers</p>
-                <p>Restaurants</p>
+                <p> <Link to="/">Home</Link> </p>
+                <p> <Link to="/about">About</Link> </p>
+                <p> <Link to="/contact">Contact</Link> </p>
                 <p>Cart</p>
                 {
                     isLoggedIn ? (
-                        <button onClick={() => setIsLoggedIn(false)}>Logout</button>
+                        <button className="primary-btn" onClick={() => setIsLoggedIn(false)}>Logout</button>
                     ) : (
-                        <button onClick={() => setIsLoggedIn(true)}>Login</button>
+                        <Link to="/login">
+                            {/* add this func below after implementing proper login func onClick={() => setIsLoggedIn(true)} */}
+                            <button className="primary-btn">Login</button>
+                        </Link>
                     )
                 }
             </ul>
