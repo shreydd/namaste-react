@@ -71,7 +71,7 @@ const Body = () => {
                 : <main className="grid-list">
                     {
                         restaurantsAvailable.map((res) => {
-                            return <Link className="link-reformat" to={"/restaurant/"+res?.data?.id}> <RestaurantCard key={res?.data?.id} {...res?.data} /> </Link>
+                            return <Link className="link-reformat" to={"/restaurant/"+res?.data?.id} key={res?.data?.id}> <RestaurantCard {...res?.data} /> </Link>
                         })
                     }
                 </main>

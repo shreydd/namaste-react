@@ -13,6 +13,9 @@ import Login from "./src/components/Login";
 
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
+import ProfileClass from "./src/components/ProfileClassComp";
+import Credits from "./src/components/Credits";
+
 const AppLayout = () => {
     return(
         <>
@@ -39,7 +42,17 @@ const appRouter = createBrowserRouter([
             },
             {
                 path: '/about',
-                element: <About />
+                element: <About />,
+                children:[
+                    {
+                        path:'profile',
+                        element: <ProfileClass />
+                    },
+                    {
+                        path: 'credits',
+                        element: <Credits />
+                    }
+                ]
             },
             {
                 path: '/contact',
