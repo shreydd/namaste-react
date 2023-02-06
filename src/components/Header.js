@@ -1,8 +1,11 @@
 import Logo from "/assets/images/Meshi.svg";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import useIsOnline from "../hooks/useIsOnline";
 
 const Header = () => {
+
+    const isOnline = useIsOnline()
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -15,6 +18,9 @@ const Header = () => {
                 <p> <Link to="/">Home</Link> </p>
                 <p> <Link to="/about">About</Link> </p>
                 <p> <Link to="/contact">Contact</Link> </p>
+
+                <p> { isOnline ? "✅": "🛑" } </p>
+
                 <p>Cart</p>
                 {
                     isLoggedIn ? (

@@ -17,110 +17,46 @@ Make sure to use `npm install` if you are missing any packages or cloning this r
 
 # Assignment questions
 
-### How to create nested routes with `react-router-dom`'s configuration?
-```js
-const appRouter = createBrowserRouter([
-    {
-        path: '/',
-        element: <AppLayout/>,
-        errorElement: <Error />,
-        children: [
-            {
-                path: '/',
-                element: <Body />
-            },
-            {
-                path: '/login',
-                element: <Login />
-            },
-            {
-                path: '/about',
-                element: <About />,
-                children: [
-                    {
-                        path: 'profile', // will work like: localhost:1234/about/profile
-                        element: <Profile />
-                    }
-                ]
-            },
-            {
-                path: '/contact',
-                element: <Contact />
-            },
-            {
-                path: '/restaurant/:id',
-                element: <RestaurantDetails />
-            }
-        ]
-    }
-])
-```
+### When and why do we need lazy()?
+The `lazy()` function will allow us to load components / pages on demand. When applications scale / grow bigger, the bundle size gets heavier causing a lot of time on initial load. To avoid that we can use this function to only load components when required by the user.
 
 
-### Explain createHashRouter and createMemoryRouter
-**createMemoryRouter:**
-If you require running React router in a non-browser environment then this can help us manage a history stack in memory, Instead of using the browsers history a memory router manages it for us.
-Read: https://reactrouter.com/en/main/routers/create-memory-router
+### What is suspense?
+<Suspense> lets you display a fallback until its children have finished loading.
 
-**createHashRouter:**
-This router is useful if you are unable to configure your web server to direct all traffic to your React Router application. Instead of using normal URLs, it will use the hash (#) portion of the URL to manage the "application URL".
+When you are loading your components it takes time to get the full bundle and render it, in this gap of time react tries to suspend the operation since it’s trying to render something that isn’t existing yet, for this we use Suspense.
 
-On why it's not a recommended approach:
-<HashRouter> is for use in web browsers when the URL should not (or cannot) be sent to the server for some reason. This may happen in some shared hosting scenarios where you do not have full control over the server. In these situations, <HashRouter> makes it possible to store the current location in the hash portion of the current URL, so it is never sent to the server.
 
-Read: https://stackoverflow.com/questions/74199357/why-hashrouter-in-react-router-v6-is-not-recommended
+### Why we got this error : A component suspended while responding to synchronous input. This will cause the UI to be replaced with a loading indicator. To fix, updates that suspend should be wrapped with startTransition? How does suspense fix this error?
+This error occurs when we try to lazy load a component but 
+
+a) the component takes about a sec to load as it requires to be called from the server
+
+b) react suspends the operation if anything is missing / not there during rendering
+
+So to combat this we use <Suspense> which allows us to display a fallback until its children have finished loading.
 
 
 
-### What is the order of life cycle method calls in class based components?
+### What are the Advantages and disadvantages of using this code splitting pattern?
+Advantages of Lazy Loading
 
-There are mainly 2 phases and 3 processes, `Render phase` and `Commit phase`. The components also go through a process of `mounting`, `updating` and `unmounting`
+    Reduces initial loading time by reducing the bundle size.
+    Reduces browser workload.
+    Improves application performance in low bandwidth situations.
+    Improves user experience at initial loading.
+    Optimizes resource usage.
 
-**During mounting:** constructor -> render -> update the DOM and refs -> ComponentDidMount
+Disadvantages of Lazy Loading
 
-**During updating:** New props / setState() / forceUpdate() -> render -> update the DOM and refs -> ComponentDidUpdate
+    Not suitable for small-scale applications.
+    Placeholders can slow down quick scrolling.
+    Requires additional communication with the server to fetch resources.
+    Can affect SEO and ranking
 
-**During unMounting:** ComponentWillUnmount
-
-Everything before the `updation of DOM and refs` falls under the render phase, everything after is under commit phase.
-
-Refer: https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
-
-
-### Why do we use ComponentDidMount?
-There will be cases where we need to know if a component has been mounted on the DOM, when it does we can update it with the required UI. Ex: Showing shimmer UI when data is being loaded in the background. This helps us provide a better user experience.
-
-
-### Why do we use ComponentWillUnmount? Show with example
-When setting background processes relevant only when a particular component is mounted / visible to the user, often times those are not handled properly and will trigger multiple processes of the same task resulting in unnecessary load on the processor. With the help of `ComponentWillUnmount` we can make sure that unnecessary tasks are handled when it's not required.
-
-Ex: if we do a setTimeout in ComponentDidMount, everytime the component is unmounted and mounted again, multiple setTimeout process is triggered without handling the previous ones. This can be an issue in large scale applications. To handle this we can
-
-```js
-
-componentDidMount() {
-    this.timer = setInterval(() => {
-        console.log("react namaste")
-    }, 1000);
-}
-
-componentWillUnmount() {
-    clearInterval(this.timer);
-}
-```
+Read: https://www.syncfusion.com/blogs/post/lazy-loading-with-react-an-overview.aspx
 
 
 
-
-
-### Why do we use super(props) in a constructor?
-We need to understand what a constructor is, it's a method that is automatically called when an object of the respective class is created.
-
-To set property or use 'this' inside the constructor it is mandatory to call super().
-
-Read: https://www.knowledgehut.com/blog/web-development/understanding-constructors-with-react-components
-
-
-### Why can't we have the callback function of useEffect as an async?
-Async functions implicitly return a promise while the useEffect expects its callback to either return nothing or a clean-up function.
-Read: https://www.designcise.com/web/tutorial/why-cant-react-useeffect-callback-be-async
+### When and Why do we need Suspense?
+When we are using lazy loading then we will need Suspense to show fallback content until the component is loaded completely. We need suspense so that react doesn't skip over / not render / suspend the ops of a component while it's still loading.

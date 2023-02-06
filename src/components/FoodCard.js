@@ -1,6 +1,6 @@
 const FoodCard = ({name, id}) => {
     return(
-        <div>
+        <div key={id}>
             - {name}
         </div>
     )

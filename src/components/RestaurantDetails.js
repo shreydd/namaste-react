@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { SWIGGY_MENU_API } from "../../config";
+import useRestaurantDetails from "../hooks/useRestaurantDetails";
 import FoodCard from "./FoodCard";
 import Shimmer from "./Shimmer";
 
@@ -9,18 +8,7 @@ const RestaurantDetails = () => {
     const ParamRestaurantId = useParams();
     const { id } = ParamRestaurantId;
 
-    const [restaurantDetail, setRestaurantDetail] = useState(null);
-
-    const getRestaurantDetails = async () => {
-        const data = await fetch(SWIGGY_MENU_API + id);
-        const json = await data.json();
-        console.log(json?.data);
-        setRestaurantDetail(json?.data);
-    }
-
-    useEffect(() => {
-        getRestaurantDetails()
-    }, [])
+    const restaurantDetail = useRestaurantDetails(id);
 
     return (
         <>
@@ -34,7 +22,7 @@ const RestaurantDetails = () => {
                             {/* <ul> */}
                                 {Object.values(restaurantDetail?.menu?.items).map((item) => (
                                     // <li key={item.id}>{item.name}</li>
-                                    <FoodCard {...item} />
+                                    <FoodCard {...item} key={item.id} />
                                 ))}
                             {/* </ul> */}
                         </div>

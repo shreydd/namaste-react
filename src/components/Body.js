@@ -1,28 +1,9 @@
 import RestaurantCard from "/src/components/RestaurantCard";
-import { RestaurantsData, SWIGGY_API } from "../../config";
+import { SWIGGY_API } from "../../config";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
-
-// function to filter through all the restaurants 
-const filterData = (searchText, restaurants) => {
-    let filtered = [];
-
-    // if search text is null or has only white spaces then show all
-    if (searchText.match(/^\s*$/) !== null) {
-        filtered = restaurants;
-        return filtered;
-    } else {
-        filtered = restaurants.filter((res) => {
-            let restaurantName = res?.data?.name
-            restaurantName = restaurantName.toLowerCase()
-            // trim whitespaces and lowercase the search text
-            return restaurantName.includes(searchText.trim().toLowerCase())
-        })
-    }
-
-    return filtered;
-}
+import { filterData } from "../hooks/helpers";
 
 
 const Body = () => {
@@ -38,7 +19,7 @@ const Body = () => {
     const getRestaurants = async () => {
         const data = await fetch(SWIGGY_API);
         const json = await data.json();
-        // console.log(json?.data?.cards[2]?.data?.data?.cards)
+
         setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards);
         setRestaurantsAvailable(json?.data?.cards[2]?.data?.data?.cards);
     }

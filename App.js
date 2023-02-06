@@ -1,4 +1,4 @@
-import React from "react";
+import React, {lazy, Suspense} from "react";
 import ReactDOM from "react-dom/client";
 
 import Header from './src/components/Header';
@@ -6,8 +6,6 @@ import Body from "./src/components/Body";
 import Footer from "./src/components/Footer";
 
 import Error from "./src/components/Error";
-import About from "./src/components/About";
-import Contact from "./src/components/Contact";
 import RestaurantDetails from "./src/components/RestaurantDetails";
 import Login from "./src/components/Login";
 
@@ -15,6 +13,9 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
 import ProfileClass from "./src/components/ProfileClassComp";
 import Credits from "./src/components/Credits";
+
+const About = lazy(() => import('../namaste-react-01/src/components/About'))
+const Contact = lazy(() => import('../namaste-react-01/src/components/Contact'))
 
 const AppLayout = () => {
     return(
@@ -42,7 +43,11 @@ const appRouter = createBrowserRouter([
             },
             {
                 path: '/about',
-                element: <About />,
+                element: (
+                    <Suspense fallback={<h4>Loading...</h4>}>
+                        <About/>
+                    </Suspense>
+                ),
                 children:[
                     {
                         path:'profile',
@@ -56,7 +61,11 @@ const appRouter = createBrowserRouter([
             },
             {
                 path: '/contact',
-                element: <Contact />
+                element: (
+                    <Suspense fallback={<>Loading......</>}>
+                        <Contact/>
+                    </Suspense>
+                )
             },
             {
                 path: '/restaurant/:id',
