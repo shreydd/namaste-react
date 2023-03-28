@@ -17,46 +17,42 @@ Make sure to use `npm install` if you are missing any packages or cloning this r
 
 # Assignment questions
 
-### When and why do we need lazy()?
-The `lazy()` function will allow us to load components / pages on demand. When applications scale / grow bigger, the bundle size gets heavier causing a lot of time on initial load. To avoid that we can use this function to only load components when required by the user.
+### How do we configure tailwind?
+
+refer for all frameworks it works on: https://tailwindcss.com/docs/installation/framework-guides
 
 
-### What is suspense?
-<Suspense> lets you display a fallback until its children have finished loading.
-
-When you are loading your components it takes time to get the full bundle and render it, in this gap of time react tries to suspend the operation since it’s trying to render something that isn’t existing yet, for this we use Suspense.
+### In tailwind.config.js, what do the keys mean?
+`content`: To specify the path where all the files are using tailwind. From the docs: The content section of your tailwind.config.js file is where you configure the paths to all of your HTML templates, JavaScript components, and any other source files that contain Tailwind class names.
 
 
-### Why we got this error : A component suspended while responding to synchronous input. This will cause the UI to be replaced with a loading indicator. To fix, updates that suspend should be wrapped with startTransition? How does suspense fix this error?
-This error occurs when we try to lazy load a component but 
+`theme`: If you want to change things like your color palette, spacing scale, typography scale, or breakpoints, add your customizations to the theme section of your tailwind.config.js file
 
-a) the component takes about a sec to load as it requires to be called from the server
+under themes: 
+ - `screens`: Customizing the default breakpoints for your project.
 
-b) react suspends the operation if anything is missing / not there during rendering
+ - `colors`: Customizing the default color palette for your project.
 
-So to combat this we use <Suspense> which allows us to display a fallback until its children have finished loading.
-
-
-
-### What are the Advantages and disadvantages of using this code splitting pattern?
-Advantages of Lazy Loading
-
-    Reduces initial loading time by reducing the bundle size.
-    Reduces browser workload.
-    Improves application performance in low bandwidth situations.
-    Improves user experience at initial loading.
-    Optimizes resource usage.
-
-Disadvantages of Lazy Loading
-
-    Not suitable for small-scale applications.
-    Placeholders can slow down quick scrolling.
-    Requires additional communication with the server to fetch resources.
-    Can affect SEO and ranking
-
-Read: https://www.syncfusion.com/blogs/post/lazy-loading-with-react-an-overview.aspx
+ - `spacing`: Customizing the default spacing and sizing scale for your project.
 
 
 
-### When and Why do we need Suspense?
-When we are using lazy loading then we will need Suspense to show fallback content until the component is loaded completely. We need suspense so that react doesn't skip over / not render / suspend the ops of a component while it's still loading.
+`plugins`: Plugins let you register new styles for Tailwind to inject into the user’s stylesheet using JavaScript instead of CSS.
+
+
+`presets`: Creating your own reusable configuration presets.
+
+
+
+refer: https://tailwindcss.com/docs/configuration
+
+
+
+### Why do we have a .postcssrc file?
+If you’re using Tailwind for a brand new project and don’t need to integrate it with any existing Sass/Less/Stylus stylesheets, you should highly consider relying on other PostCSS plugins to add the preprocessor features you use instead of using a separate preprocessor.
+
+This has a few benefits:
+
+    Your builds will be faster. Since your CSS doesn’t have to be parsed and processed by multiple tools, your CSS will compile much quicker using only PostCSS.
+    
+    No quirks or workarounds. Because Tailwind adds some new non-standard keywords to CSS (like @tailwind, @apply, theme(), etc.), you often have to write your CSS in annoying, unintuitive ways to get a preprocessor to give you the expected output. Working exclusively with PostCSS avoids this.

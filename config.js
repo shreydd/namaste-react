@@ -2,7 +2,9 @@ export const IMG_CDN_LINK = "https://res.cloudinary.com/swiggy/image/upload/fl_l
 
 export const SWIGGY_API = "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9063&lng=77.5857&page_type=DESKTOP_WEB_LISTING"
 
-export const SWIGGY_MENU_API = "https://www.swiggy.com/dapi/menu/v4/full?lat=12.9063&lng=77.5857&menuId="
+// export const SWIGGY_MENU_API = "https://www.swiggy.com/dapi/menu/v4/full?lat=12.9063&lng=77.5857&menuId="
+
+export const SWIGGY_MENU_API = "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=21.1702401&lng=72.83106070000001&&submitAction=ENTER&restaurantId="
 
 export const RestaurantsData = [{
 	"cards": [

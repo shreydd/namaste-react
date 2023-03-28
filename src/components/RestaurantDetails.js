@@ -15,17 +15,14 @@ const RestaurantDetails = () => {
             {
                 !restaurantDetail ? <Shimmer /> : (
                     <div>
-                        <h1>{restaurantDetail?.name}</h1>
-                        <h5>{restaurantDetail?.costForTwoMsg}</h5>
-                        <h5>{restaurantDetail?.area}</h5>
-                        <div className="">
-                            {/* <ul> */}
+                        <h1>{restaurantDetail?.cards[0]['card']['card']['info']['name']}</h1>
+                        <h5>{restaurantDetail?.cards[0]['card']['card']['info']['costForTwoMessage']}</h5>
+                        <h5>{restaurantDetail?.cards[0]['card']['card']['info']['areaName']}</h5>
+                        {/* <div className="">
                                 {Object.values(restaurantDetail?.menu?.items).map((item) => (
-                                    // <li key={item.id}>{item.name}</li>
                                     <FoodCard {...item} key={item.id} />
                                 ))}
-                            {/* </ul> */}
-                        </div>
+                        </div> */}
                     </div>
                 )
             }
