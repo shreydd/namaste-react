@@ -13,6 +13,7 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
 import ProfileClass from "./src/components/ProfileClassComp";
 import Credits from "./src/components/Credits";
+import Instamart from "./src/components/Instamart";
 
 const About = lazy(() => import('../namaste-react-01/src/components/About'))
 const Contact = lazy(() => import('../namaste-react-01/src/components/Contact'))
@@ -64,6 +65,14 @@ const appRouter = createBrowserRouter([
                 element: (
                     <Suspense fallback={<>Loading......</>}>
                         <Contact/>
+                    </Suspense>
+                )
+            },
+            {
+                path: '/instamart',
+                element: (
+                    <Suspense fallback={<>Loading......</>}>
+                        <Instamart/>
                     </Suspense>
                 )
             },

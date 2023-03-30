@@ -2,8 +2,12 @@ import Logo from "/assets/images/Meshi.svg";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import useIsOnline from "../hooks/useIsOnline";
+import UserContext from "../hooks/UserContext";
+import { useContext } from "react";
 
 const Header = () => {
+
+    const {user} = useContext(UserContext);
 
     const isOnline = useIsOnline()
 
@@ -18,10 +22,11 @@ const Header = () => {
                 <p> <Link to="/">Home</Link> </p>
                 <p> <Link to="/about">About</Link> </p>
                 <p> <Link to="/contact">Contact</Link> </p>
-
-                <p> { isOnline ? "✅": "🛑" } </p>
-
+                
                 <p>Cart</p>
+
+                <p> {user.name + " - " + user.email} { isOnline ? "✅": "🛑" } </p>
+
                 {
                     isLoggedIn ? (
                         <button className="primary-btn" onClick={() => setIsLoggedIn(false)}>Logout</button>
