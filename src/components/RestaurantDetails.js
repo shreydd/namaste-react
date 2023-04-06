@@ -19,10 +19,17 @@ const RestaurantDetails = () => {
                         <h5>{restaurantDetail?.cards[0]['card']['card']['info']['costForTwoMessage']}</h5>
                         <h5>{restaurantDetail?.cards[0]['card']['card']['info']['areaName']}</h5>
                         {/* <div className="">
-                                {Object.values(restaurantDetail?.menu?.items).map((item) => (
+                                {Object.values(restaurantDetail?.cards[2]['groupedCard']['cardGroupMap']['REGULAR']['cards'][0]).map((item) => (
                                     <FoodCard {...item} key={item.id} />
                                 ))}
                         </div> */}
+                        {
+                            [1, 2, 3, 4, 5].map(item => {
+                                return (
+                                    <FoodCard name={"food " + item + " from " + restaurantDetail?.cards[0]['card']['card']['info']['name']} key={item} />
+                                )
+                            })
+                        }
                     </div>
                 )
             }
