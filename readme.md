@@ -19,68 +19,31 @@ Make sure to use `npm install` if you are missing any packages or cloning this r
 
 > Note: have Only put up theory stuff from here for the rest of the course, redux code / methods has been saved in notion
 
-### useContext vs Redux
-useContext:
-    - Specifically designed for static data, that is not often refreshed or updated
-    - UI logic and State Management Logic are in the same component
-    - Debugging can be hard in highly nested React Component Structure even with Dev Tool
+### diff types of testing
+- manual testing (done by humans manually)
 
-Redux:
-    - Works like a charm with both static and dynamic data
-    - Incredibly powerful Redux Dev Tools to ease debugging
-    - Better code organization with separate UI logic and State Management Logic
+- automated testing (code testing code)
+    - selenium (full testing workflow)
 
+- E2E testing (tests whole flow by simulating a user, covers entire user journey)
+    - Cypress
+    - Headless browsers are used (kind of an invisible browser, does not have a viewport)
 
-Ref: https://dev.to/ruppysuppy/redux-vs-context-api-when-to-use-them-4k3p
-
+- Unit testing (covers component like testing)
+- Integration testing (testing the integration between comps)
 
 
-### Advantage of using redux toolkit over redux
-Redux Toolkit makes it easier to write good Redux applications and speeds up development
+### What is enzyme
+Enzyme is a JavaScript Testing utility for React that makes it easier to test your React Components' output. You can also manipulate, traverse, and in some ways simulate runtime given the output.
 
 
-### Explain Dispatcher
-Dispatch:​ The Redux store has a method called dispatch . The only way to update the state is to call store.dispatch() and pass in an action object like `dispatch(addItem(43))`. The store will run its reducer function and save the new state value inside, and we can call getState() / useSelector() to retrieve the updated value of the store.
+### enzyme vs react testing library
+ If you want mimic real-world user interactions, the React Testing Library is the way to go because you can do the same with fireEvent functions.
+
+Meanwhile, Enzyme is better suited to situations where you have to match the state of React or some other function with state. Here, you can even use the setState function of React.
+
+ref: https://www.testim.io/blog/react-testing-library-vs-enzyme/
 
 
-## Explain Reducer
-A reducer is a function that receives the current state and an action object, decides how to update the state if necessary, and returns the new state: (state, action) => newState. You can think of a reducer as an event listener which handles events based on the received action (event) type.
-
-ref: https://redux.js.org/tutorials/fundamentals/part-2-concepts-data-flow#reducers
-
-
-
-### Explain slice
-A slice is the portion of Redux code that relates to a specific set of data and actions within the store 's state
-
-ref: https://www.codecademy.com/learn/fecp-redux/modules/core-redux-api/cheatsheet
-
-
-### Explain Selector
-It is used to access the data in a slice of our redux store
-
-
-### Explain createSlice and the config it takes
-
-To make a section of sorts for a set of particular data, we `createSlice` in the following manner
-```js
-import {createSlice} from "@reduxjs/toolkit";
-
-const cart = createSlice({
-    name: 'cart',
-    initialState: {
-        items: [],
-    },
-    reducers: {
-        addItem: () => {
-            // func stuff
-        }
-    }
-})
-
-export const {addItem} = cart.actions;
-
-export default cart.reducer;
-```
-
-It takes a name to identify, an initialState to provide default values and reducer functions to perform actions on the data we store. 
+### what is jest and why use it
+Jest is a js testing framework. It ensures that different tests don't influence each other's results. For Jest, tests are executed in parallel, each running in their own process. This means they can't interfere with other tests, and Jest acts as the orchestrator that collects the results from all the test processes.
